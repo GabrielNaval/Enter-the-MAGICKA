@@ -27,6 +27,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
+    /**Setting dimension of the canvas */
     public Game() {
         setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -54,6 +55,7 @@ public class Game extends Canvas implements Runnable {
         running = false;
     }
 
+    /**Where updating of each frame occurs */
     public void run(){
         long lastTime = System.nanoTime();
         double nsPerTick = 1000000000D/60D; /*How many nanoseconds per tick */
@@ -102,6 +104,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    /**Used to actually display images on the canvas*/
     public void render(){
         BufferStrategy bs = getBufferStrategy();
         if (bs == null){
@@ -120,6 +123,7 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
+    /** Creating a thread and starting it*/
     public static void main(String[] args){
         new Game().start();
     }
