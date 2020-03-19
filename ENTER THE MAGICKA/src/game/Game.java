@@ -32,6 +32,7 @@ public class Game extends Canvas implements Runnable {
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
     private Screen screen;
+    public InputHandler input;
     
     /**Setting dimension of the canvas */
     public Game() {
@@ -54,6 +55,7 @@ public class Game extends Canvas implements Runnable {
 
     public void init(){
         screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet.png"));
+        input = new InputHandler(this);
     }
 
     public synchronized void start(){
@@ -112,8 +114,17 @@ public class Game extends Canvas implements Runnable {
     public void tick(){
         tickCount++;
 
-        for (int i = 0; i < pixels.length; i++){
-            pixels[i] = i + tickCount;
+        if (input.up.isPressed()){ 
+            screen.yOffset--;
+        }
+        if (input.down.isPressed()){ 
+            screen.yOffset++;
+        }
+        if (input.left.isPressed()){ 
+            screen.xOffset--;
+        }
+        if (input.right.isPressed()){ 
+            screen.xOffset++;
         }
     }
 
