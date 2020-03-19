@@ -114,6 +114,7 @@ public class Game extends Canvas implements Runnable {
     public void tick(){
         tickCount++;
 
+        /**This is for input testing purposes. Remove later */
         if (input.up.isPressed()){ 
             screen.yOffset--;
         }

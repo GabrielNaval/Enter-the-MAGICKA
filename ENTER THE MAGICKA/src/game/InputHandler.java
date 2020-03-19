@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.event.MouseInputListener;
 
+//TODO: when player class is made, use mouseinput listener on it
+//Also, NOTE to use isLeftMouseButton and isRightMouseButton(MouseEvent e) for player movement
 public class InputHandler implements KeyListener, MouseInputListener {
 
     public InputHandler(Game game) {

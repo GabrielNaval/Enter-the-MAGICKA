@@ -22,7 +22,7 @@ public class Screen {
         this.height = height;
         this.sheet = sheet;
 
-        /**Set which colors correspond to actual colors */
+        /**Set which sprite sheet colors correspond to actual colors */
         for(int i = 0; i < MAP_WIDTH * MAP_WIDTH; i++){
             colors[i*4+0] = 0xff00ff;
             colors[i*4+1] = 0x0000ff;
@@ -33,6 +33,7 @@ public class Screen {
 
     public void render(int[] pixels, int offset, int row){
         /**Iterate through all the pixels and draw them */
+        //TODO: Learn how this works
         for(int yTile = yOffset >> 3; yTile <= (yOffset + height) >> 3; yTile++){
             int yMin = yTile * 8;
             int yMax = yMin + 8;
