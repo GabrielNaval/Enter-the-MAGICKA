@@ -2,12 +2,15 @@ package game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputHandler implements KeyListener {
+import javax.swing.event.MouseInputListener;
 
-    public InputHandler(Game game){
+public class InputHandler implements KeyListener, MouseInputListener {
+
+    public InputHandler(Game game) {
         game.addKeyListener(this);
     }
 
@@ -15,16 +18,17 @@ public class InputHandler implements KeyListener {
         private int numTimesPressed = 0;
         private boolean pressed = false;
 
-        public void toggle(boolean isPressed){
+        public void toggle(boolean isPressed) {
             pressed = isPressed;
-            if(isPressed) numTimesPressed++;
+            if (isPressed)
+                numTimesPressed++;
         }
 
-        public boolean isPressed(){
+        public boolean isPressed() {
             return pressed;
         }
 
-        public int getNumTimesPressed(){
+        public int getNumTimesPressed() {
             return numTimesPressed;
         }
     }
@@ -35,7 +39,6 @@ public class InputHandler implements KeyListener {
     public Key down = new Key();
     public Key left = new Key();
     public Key right = new Key();
-    
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -52,11 +55,61 @@ public class InputHandler implements KeyListener {
     public void keyTyped(KeyEvent e) {
 
     }
-    
-    public void toggleKey(int keyCode, boolean isPressed){
-        if (keyCode == KeyEvent.VK_W) { up.toggle(isPressed);}
-        if (keyCode == KeyEvent.VK_S) { down.toggle(isPressed);}
-        if (keyCode == KeyEvent.VK_A) { left.toggle(isPressed);}
-        if (keyCode == KeyEvent.VK_D) { right.toggle(isPressed);}
+
+    public void toggleKey(int keyCode, boolean isPressed) {
+        if (keyCode == KeyEvent.VK_W) {
+            up.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_S) {
+            down.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_A) {
+            left.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_D) {
+            right.toggle(isPressed);
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        // TODO Auto-generated method stub
+
     }
 }
