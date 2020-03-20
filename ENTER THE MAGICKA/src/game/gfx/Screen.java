@@ -30,8 +30,8 @@ public class Screen {
         yPos -= yOffset;
 
         /**X and Y coordinate of the tile we want to extract */
-        int xTile = xPos%32;
-        int yTile = xPos/32;
+        int xTile = tile%32;
+        int yTile = tile/32;
 
         int tileOffset = (xTile << 3) + (yTile << 3) * sheet.width;
 
@@ -42,7 +42,6 @@ public class Screen {
             for(int x = 0; x < 8; x++){
                 if (x + xPos < 0 || x + xPos >= width) continue;
                 int xSheet = x;
-
                 int col = (color >> (sheet.pixels[xSheet + ySheet * sheet.width + tileOffset] * 8)) & 255;
                 if(col < 255){
                     pixels[(x + xPos) + (y + yPos) * width] = col; 
