@@ -154,7 +154,7 @@ public class Game extends Canvas implements Runnable {
 
         for(int y = 0; y < 32; y++){
             for (int x = 0; x < 32; x++){
-                screen.render(x << 3, y << 3, 0, Colors.get(555, 500, 050, 005));
+                screen.render(x << 3, y << 3, 0, Colors.get(555, 505, 055, 550), true, true);
             }
         }
 
