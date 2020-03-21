@@ -15,6 +15,7 @@ import game.gfx.Colors;
 import game.gfx.Font;
 import game.gfx.Screen;
 import game.gfx.SpriteSheet;
+import game.level.Level;
 
 
 public class Game extends Canvas implements Runnable {
@@ -36,6 +37,7 @@ public class Game extends Canvas implements Runnable {
 
     private Screen screen;
     public InputHandler input;
+    public Level level;
     
     /**Setting dimension of the canvas */
     public Game() {
@@ -72,6 +74,7 @@ public class Game extends Canvas implements Runnable {
 
         screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet.png"));
         input = new InputHandler(this);
+        level = new Level(64, 64);
     }
 
     public synchronized void start(){
@@ -124,6 +127,8 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    private int x = 0, y = 0;
+
     /**
      * Update the logic of the game
     */
@@ -132,17 +137,19 @@ public class Game extends Canvas implements Runnable {
 
         /**This is for input testing purposes. Remove later */
         if (input.up.isPressed()){ 
-            screen.yOffset--;
+            y--;
         }
         if (input.down.isPressed()){ 
-            screen.yOffset++;
+            y++;
         }
         if (input.left.isPressed()){ 
-            screen.xOffset--;
+            x--;
         }
         if (input.right.isPressed()){ 
-            screen.xOffset++;
+            x++;
         }
+
+        level.tick();
     }
 
     /**Used to actually display images on the canvas*/
@@ -153,14 +160,20 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
-        for(int y = 0; y < 32; y++){
-            for (int x = 0; x < 32; x++){
-                screen.render(x << 3, y << 3, 0, Colors.get(555, 505, 055, 550), true, true);
+        int xOffset = x - (screen.width/2);
+        int yOffset = y - (screen.height/2);
+        level.renderTiles(screen, xOffset, yOffset);
+
+        for(int x = 0; x < level.width; x++){
+            int color = Colors.get(-1, -1, -1, 000);
+            if (x %10 == 0 && x != 0){
+                color = Colors.get(-1, -1, -1, 500);
             }
+            Font.render((x%10) + "", screen, 0 + (x * 8), 0, color);
         }
 
-        String msg = "Hello World! 0157";
-        Font.render(msg, screen, screen.xOffset + screen.width/2 - (msg.length()*8/2), screen.yOffset + screen.height/2, Colors.get(-1, -1, -1, 0));
+        // String msg = "Hello World! 0157";
+        // Font.render(msg, screen, screen.xOffset + screen.width/2 - (msg.length()*8/2), screen.yOffset + screen.height/2, Colors.get(-1, -1, -1, 0));
 
         for(int y = 0; y< screen.height; y++){
             for(int x = 0; x< screen.width; x++){
@@ -172,8 +185,6 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         g.dispose();
         bs.show();
