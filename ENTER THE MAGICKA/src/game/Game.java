@@ -12,6 +12,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import game.gfx.Colors;
+import game.gfx.Font;
 import game.gfx.Screen;
 import game.gfx.SpriteSheet;
 
@@ -157,6 +158,9 @@ public class Game extends Canvas implements Runnable {
                 screen.render(x << 3, y << 3, 0, Colors.get(555, 505, 055, 550), true, true);
             }
         }
+
+        String msg = "Hello World! 0157";
+        Font.render(msg, screen, screen.xOffset + screen.width/2 - (msg.length()*8/2), screen.yOffset + screen.height/2, Colors.get(-1, -1, -1, 0));
 
         for(int y = 0; y< screen.height; y++){
             for(int x = 0; x< screen.width; x++){

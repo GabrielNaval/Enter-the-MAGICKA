@@ -25,6 +25,10 @@ public class Screen {
         pixels = new int[width*height];
     }
 
+    public void render(int xPos, int yPos, int tile, int color){
+        render(xPos, yPos, tile, color, false, false);
+    }
+
     public void render(int xPos, int yPos, int tile, int color, boolean mirrorX, boolean mirrorY){
         xPos -= xOffset;
         yPos -= yOffset;
