@@ -5,6 +5,9 @@ public class Screen {
     public static final int MAP_WIDTH=64;
     public static final int MAP_WIDTH_MASK = MAP_WIDTH-1;
 
+    public static final byte BIT_MIRROR_X = 0x01;
+    public static final byte BIT_MIRROR_Y = 0x02;
+
     public int[] pixels;
 
     /**Offsets the screen so we can render the screen and camera point */
@@ -26,13 +29,15 @@ public class Screen {
     }
 
     public void render(int xPos, int yPos, int tile, int color){
-        render(xPos, yPos, tile, color, false, false);
+        render(xPos, yPos, tile, color, 0x00);
     }
 
-    public void render(int xPos, int yPos, int tile, int color, boolean mirrorX, boolean mirrorY){
+    public void render(int xPos, int yPos, int tile, int color, int mirrorDir){
         xPos -= xOffset;
         yPos -= yOffset;
 
+        boolean mirrorX = (mirrorDir & BIT_MIRROR_X) > 0 ;
+        boolean mirrorY = (mirrorDir & BIT_MIRROR_Y) > 0 ;
         /**X and Y coordinate of the tile we want to extract */
         int xTile = tile%32;
         int yTile = tile/32;

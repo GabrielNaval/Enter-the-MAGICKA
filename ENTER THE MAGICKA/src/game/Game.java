@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import game.entities.Player;
 import game.gfx.Colors;
 import game.gfx.Font;
 import game.gfx.Screen;
@@ -38,6 +39,7 @@ public class Game extends Canvas implements Runnable {
     private Screen screen;
     public InputHandler input;
     public Level level;
+    public Player player;
     
     /**Setting dimension of the canvas */
     public Game() {
@@ -75,6 +77,8 @@ public class Game extends Canvas implements Runnable {
         screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet.png"));
         input = new InputHandler(this);
         level = new Level(64, 64);
+        player = new Player(level, 0, 0, input);
+        level.addEntity(player);
     }
 
     public synchronized void start(){
@@ -134,21 +138,6 @@ public class Game extends Canvas implements Runnable {
     */
     public void tick(){
         tickCount++;
-
-        /**This is for input testing purposes. Remove later */
-        if (input.up.isPressed()){ 
-            y--;
-        }
-        if (input.down.isPressed()){ 
-            y++;
-        }
-        if (input.left.isPressed()){ 
-            x--;
-        }
-        if (input.right.isPressed()){ 
-            x++;
-        }
-
         level.tick();
     }
 
@@ -160,8 +149,9 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
-        int xOffset = x - (screen.width/2);
-        int yOffset = y - (screen.height/2);
+        int xOffset = player.x - (screen.width/2);
+        int yOffset = player.y - (screen.height/2);
+
         level.renderTiles(screen, xOffset, yOffset);
 
         for(int x = 0; x < level.width; x++){
@@ -172,6 +162,7 @@ public class Game extends Canvas implements Runnable {
             Font.render((x%10) + "", screen, 0 + (x * 8), 0, color);
         }
 
+        level.renderEntities(screen);
         // String msg = "Hello World! 0157";
         // Font.render(msg, screen, screen.xOffset + screen.width/2 - (msg.length()*8/2), screen.yOffset + screen.height/2, Colors.get(-1, -1, -1, 0));
 
