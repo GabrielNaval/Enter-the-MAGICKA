@@ -2,7 +2,6 @@ package game;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -130,8 +129,6 @@ public class Game extends Canvas implements Runnable {
             
         }
     }
-
-    private int x = 0, y = 0;
 
     /**
      * Update the logic of the game
