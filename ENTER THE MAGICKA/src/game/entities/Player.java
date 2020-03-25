@@ -53,12 +53,12 @@ public class Player extends Mob {
         int xOffset = x - modifier/2;
         int yOffset = y - modifier/2 -4; //-4 so that the waist of the player is the center of the y 
         /**Upper body */
-        screen.render(xOffset , yOffset, xTile + yTile * 32, color);
-        screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile * 32, color);
+        screen.render(xOffset , yOffset, xTile + yTile * 32, color, 0x00, scale);
+        screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile * 32, color, 0x00, scale);
 
         /**Lower body */
-        screen.render(xOffset , yOffset + modifier, xTile + (yTile + 1) * 32, color);
-        screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile + 1)* 32, color);
+        screen.render(xOffset , yOffset + modifier, xTile + (yTile + 1) * 32, color, 0x00, scale);
+        screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile + 1)* 32, color, 0x00, scale);
     }
 
     @Override

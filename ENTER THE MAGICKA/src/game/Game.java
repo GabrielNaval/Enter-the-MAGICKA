@@ -151,6 +151,8 @@ public class Game extends Canvas implements Runnable {
 
         level.renderTiles(screen, xOffset, yOffset);
 
+        /*
+        //Font things
         for(int x = 0; x < level.width; x++){
             int color = Colors.get(-1, -1, -1, 000);
             if (x %10 == 0 && x != 0){
@@ -158,7 +160,7 @@ public class Game extends Canvas implements Runnable {
             }
             Font.render((x%10) + "", screen, 0 + (x * 8), 0, color);
         }
-
+        */
         level.renderEntities(screen);
         // String msg = "Hello World! 0157";
         // Font.render(msg, screen, screen.xOffset + screen.width/2 - (msg.length()*8/2), screen.yOffset + screen.height/2, Colors.get(-1, -1, -1, 0));
