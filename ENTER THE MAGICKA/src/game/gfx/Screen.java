@@ -28,8 +28,6 @@ public class Screen {
         pixels = new int[width*height];
     }
 
-    
-
     public void render(int xPos, int yPos, int tile, int color, int mirrorDir, int scale){
         xPos -= xOffset;
         yPos -= yOffset;

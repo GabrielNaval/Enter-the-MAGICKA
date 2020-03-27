@@ -49,16 +49,43 @@ public class Player extends Mob {
         int xTile = 0;
         int yTile = 28;
         
+        /**
+         * walking speed determines how fast the animation should take.
+         * flipTop and flipBottom are used to determine the direction
+         * the sprite should be facing. If going left, mirror the sprite 
+         * so it faces left 
+        */
+        int walkingSpeed = 4;
+        int flipTop = (numSteps >> walkingSpeed) & 1;
+        int flipBottom = (numSteps >> walkingSpeed) & 1;
+        
+        //if we're moving down, change to the appropriate sprite
+        if (movingDir == 1){
+            xTile += 2;
+        }
+        //if we're moving left or right, figure out which sprite to show and 
+        //the direction we want the sprite to be facing
+        else if (movingDir > 1) {
+            xTile += 4 + ((numSteps >> walkingSpeed) & 1) * 2;
+            flipTop = (movingDir - 1) % 2;
+            flipBottom = (movingDir - 1) % 2;
+        }
+
         int modifier = 8 * scale;
+        // xOffset and yOffset determine where we want the components of the sprite to be
+        // relative to the center of the Player sprite.
         int xOffset = x - modifier/2;
         int yOffset = y - modifier/2 -4; //-4 so that the waist of the player is the center of the y 
+        
+        //We use modifier * flipTop to correct the sprite when we flip it (because when we mirror, we only
+        //flip IN PLACE, so we want to move it so it flips across the player's y-axis)
         /**Upper body */
-        screen.render(xOffset , yOffset, xTile + yTile * 32, color, 0x00, scale);
-        screen.render(xOffset + modifier, yOffset, xTile + 1 + yTile * 32, color, 0x00, scale);
+        screen.render(xOffset + (modifier * flipTop), yOffset, xTile + yTile * 32, color, flipTop, scale);
+        screen.render(xOffset + modifier - (modifier * flipTop), yOffset, xTile + 1 + yTile * 32, color, flipTop, scale);
 
         /**Lower body */
-        screen.render(xOffset , yOffset + modifier, xTile + (yTile + 1) * 32, color, 0x00, scale);
-        screen.render(xOffset + modifier, yOffset + modifier, xTile + 1 + (yTile + 1)* 32, color, 0x00, scale);
+        screen.render(xOffset + (modifier * flipBottom), yOffset + modifier, xTile + (yTile + 1) * 32, color, flipBottom, scale);
+        screen.render(xOffset + modifier - (modifier * flipBottom), yOffset + modifier, xTile + 1 + (yTile + 1)* 32, color, flipBottom, scale);
     }
 
     @Override
