@@ -99,6 +99,8 @@ public class Player extends Mob {
         int yMin = 3;
         int yMax = 7;
 
+        //NOTE THIS COULD BE MADE MORE EFFICIENT BUT IM LAZY
+        //4 for loops correspond to the sides of the rectangle hitbox
         for(int x = xMin; x < xMax; x++){
             if(isSolidTile(xa, ya, x, yMin)){
                 return true;
