@@ -13,6 +13,8 @@ public abstract class Tile {
 			333, -1, -1), 0xFF555555);
 	public static final Tile GRASS = new BasicTile(2, 2, 0, Colors.get(-1,
 			131, 141, -1), 0xFF00FF00);
+	public static final Tile Water = new AnimatedTile(3, new int[][] {{0, 5}, {1 , 5}, {2, 5}, {1 , 5}}, Colors.get(-1, 004, 115, -1), 0xFF0000FF, 1000);
+
 
     /**The id in the tiles array */        
     protected byte id;
@@ -47,6 +49,8 @@ public abstract class Tile {
 	public boolean isEmitter() {
 		return emitter;
 	}
+
+	public abstract void tick();
 
 	public abstract void render(Screen screen, Level level, int x, int y);
 
