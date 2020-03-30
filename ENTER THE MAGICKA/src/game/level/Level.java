@@ -62,6 +62,7 @@ public class Level {
 		}
 	}	
 
+	/**Saves the level to the same level file if the level has been altered */
 	private void saveLevelToFile(){
 		try{
 			ImageIO.write(image, "png", new File(Level.class.getResource(this.imagePath).getFile()));
@@ -71,11 +72,14 @@ public class Level {
 		}
 	}
 
+	/**Alters and changes a tile (both in the tiles array and image) */
+	/**TODO: This could be used to make exits appear on the screen */
 	public void alterTile(int x, int y, Tile newTile){
 		this.tiles[x + y * width] = newTile.getId();
 		image.setRGB(x, y, newTile.getLevelColor());
 	}
 
+	/**Default level generator */
 	public void generateLevel() {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
