@@ -1,8 +1,5 @@
 package game.level.tiles;
 
-import game.gfx.Screen;
-import game.level.Level;
-
 public class AnimatedTile extends BasicTile {
 
     private int[][] animationTileCoords;

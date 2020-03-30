@@ -4,6 +4,7 @@ import game.InputHandler;
 import game.gfx.Colors;
 import game.gfx.Screen;
 import game.level.Level;
+//TODO: FIX PLAYER SPRITE - HE SHOULD BE SYMMETRICAL SO THAT WAY FLIPPING THE SPRITE WORKS CORRECTLY
 
 public class Player extends Mob {
 
