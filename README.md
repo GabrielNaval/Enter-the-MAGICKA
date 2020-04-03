@@ -5,7 +5,7 @@ TODO: Look at https://github.com/JohnKapri/Java2DGame/tree/master/Java2DGame/src
 TODO (will organize later):
 * Make the actual sprites smaller i.e. make the sprites not scale with container size
 * Way point marker when you click? 
- * Change cursor in canvas (https://stackoverflow.com/questions/1984071/how-to-hide-cursor-in-a-swing-application)
+  * Change cursor in canvas (https://stackoverflow.com/questions/1984071/how-to-hide-cursor-in-a-swing-application)
 * Adjust so when player moves, the player's body is actually centered at where they click.
 * Get player sprites
 * Extend player class to create new character types
