@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputListener;
 
 //TODO: when player class is made, use mouseinput listener on it
@@ -14,6 +15,8 @@ public class InputHandler implements KeyListener, MouseInputListener {
 
     public InputHandler(Game game) {
         game.addKeyListener(this);
+        game.addMouseListener(this);
+        this.scale = game.SCALE;
     }
 
     public class Key {
@@ -41,6 +44,11 @@ public class InputHandler implements KeyListener, MouseInputListener {
     public Key down = new Key();
     public Key left = new Key();
     public Key right = new Key();
+
+    public int moveX;
+    public int moveY;
+    
+    public int scale;
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -75,14 +83,20 @@ public class InputHandler implements KeyListener, MouseInputListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        
         // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-
+        
+        if(SwingUtilities.isRightMouseButton(e)){
+            moveX = e.getX()/scale;
+            moveY = e.getY()/scale;
+            System.out.printf("mouseX: %5d, mouseY: %5d\n", moveX, moveY);
+            
+        }
     }
 
     @Override

@@ -38,6 +38,21 @@ public class Player extends Mob {
             xa++;
         }
 
+        if(input.moveX - x > 0){
+            xa++;
+            System.out.printf("playerX: %5d, playerY: %5d\n", x, y);
+        }
+        if(input.moveX - x < 0){
+            xa--;
+        }
+        if(input.moveY - y > 0){
+            ya++;
+        }
+        if(input.moveY - y < 0){
+            ya--;
+        }
+        
+
         if(xa != 0 || ya != 0){
             move(xa, ya);
             isMoving = true;
