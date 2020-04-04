@@ -37,12 +37,11 @@ public class Player extends Mob {
         // if (input.right.isPressed()){ 
         //     xa++;
         // }
-
-        if(input.moveX - x > 0){
+        int modifier = 8 * scale/2;
+        if(input.moveX - (x + modifier) > 0){
             xa++;
-            System.out.printf("playerX: %5d, playerY: %5d\n", x, y);
         }
-        if(input.moveX - x < 0){
+        if(input.moveX - (x + modifier) < 0){
             xa--;
         }
         if(input.moveY - y > 0){

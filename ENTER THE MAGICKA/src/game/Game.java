@@ -59,16 +59,16 @@ public class Game extends Canvas implements Runnable {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        // Transparent 16 x 16 pixel cursor image.
-        Image cursorImg = toolkit.getImage("res/cursor.png");
+        // Toolkit toolkit = Toolkit.getDefaultToolkit();
+        // // Transparent 16 x 16 pixel cursor image.
+        // Image cursorImg = toolkit.getImage("res/cursor.png");
 
-        // Create a new blank cursor.
-        Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
-            cursorImg, new Point(0, 0), "blank cursor");
+        // // Create a new blank cursor.
+        // Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+        //     cursorImg, new Point(0, 0), "blank cursor");
         
-        // Set the blank cursor to the JFrame.
-        frame.getContentPane().setCursor(blankCursor);
+        // // Set the blank cursor to the JFrame.
+        // frame.getContentPane().setCursor(blankCursor);
     }
 
     public void init(){
