@@ -4,10 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-
+import java.awt.Cursor;
+import java.awt.Toolkit;
+import java.awt.Point;
 import javax.swing.JFrame;
 
 import game.entities.Player;
@@ -17,9 +20,7 @@ import game.gfx.Screen;
 import game.gfx.SpriteSheet;
 import game.level.Level;
 
-
 public class Game extends Canvas implements Runnable {
-
     private static final long serialVersionUID = 1L;
 
     public static final int WIDTH = 160;
@@ -57,6 +58,17 @@ public class Game extends Canvas implements Runnable {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        // Transparent 16 x 16 pixel cursor image.
+        Image cursorImg = toolkit.getImage("res/cursor.png");
+
+        // Create a new blank cursor.
+        Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+            cursorImg, new Point(0, 0), "blank cursor");
+        
+        // Set the blank cursor to the JFrame.
+        frame.getContentPane().setCursor(blankCursor);
     }
 
     public void init(){
@@ -72,7 +84,7 @@ public class Game extends Canvas implements Runnable {
                 }
             }
         }
-
+        
         screen = new Screen(WIDTH, HEIGHT, new SpriteSheet("/sprite_sheet.png"));
         input = new InputHandler(this);
         level = new Level("/levels/water_test_level.png");
@@ -119,14 +131,13 @@ public class Game extends Canvas implements Runnable {
                 frames ++;
                 render();
             }
-
+            
             if(System.currentTimeMillis() - lastTimer > 1000){
                 lastTimer += 1000;    
                 System.out.println(ticks  + " ticks, " + frames + " frames");
                 frames = 0;
                 ticks = 0;
-            }
-            
+            } 
         }
     }
 
@@ -173,7 +184,7 @@ public class Game extends Canvas implements Runnable {
                 }
             }
         }
-
+        
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         g.dispose();
