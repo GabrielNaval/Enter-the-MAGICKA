@@ -17,6 +17,8 @@ public class InputHandler implements KeyListener, MouseInputListener {
         game.addKeyListener(this);
         game.addMouseListener(this);
         this.scale = game.SCALE;
+        xOffset = 0;
+        yOffset = 0;
     }
 
     public class Key {
@@ -45,8 +47,13 @@ public class InputHandler implements KeyListener, MouseInputListener {
     public Key left = new Key();
     public Key right = new Key();
 
-    public int moveX;
-    public int moveY;
+    public int rightClickX;
+    public int rightClickY;
+
+    public int leftClickX;
+    public int leftClickY;
+
+    public int xOffset, yOffset;
     
     public int scale;
 
@@ -92,12 +99,19 @@ public class InputHandler implements KeyListener, MouseInputListener {
     public void mousePressed(MouseEvent e) {
         
         if(SwingUtilities.isRightMouseButton(e)){
-            moveX = e.getX()/scale;
-            moveY = e.getY()/scale;
-            System.out.printf("mouseX: %5d, mouseY: %5d\n", moveX, moveY);
-            
+            rightClickX = e.getX()/scale;
+            rightClickY = e.getY()/scale;
+            System.out.printf("Right: mouseX: %5d, mouseY: %5d\n", rightClickX, rightClickY);
+        }
+
+        else if(SwingUtilities.isLeftMouseButton(e)){
+            leftClickX = e.getX()/scale;
+            leftClickY = e.getY()/scale;
+            System.out.printf("Left: mouseX: %5d, mouseY: %5d\n", leftClickX, leftClickY);
         }
     }
+
+    
 
     @Override
     public void mouseReleased(MouseEvent e) {

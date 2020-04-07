@@ -25,31 +25,31 @@ public class Player extends Mob {
         int xa = 0;
         int ya = 0;
         /**This is for input testing purposes. Remove later */
-        // if (input.up.isPressed()){ 
-        //     ya--;
-        // }
-        // if (input.down.isPressed()){ 
-        //     ya++;
-        // }
-        // if (input.left.isPressed()){ 
-        //     xa--;
-        // }
-        // if (input.right.isPressed()){ 
-        //     xa++;
-        // }
-        int modifier = 8 * scale/2;
-        if(input.moveX - (x + modifier) > 0){
-            xa++;
-        }
-        if(input.moveX - (x + modifier) < 0){
-            xa--;
-        }
-        if(input.moveY - y > 0){
-            ya++;
-        }
-        if(input.moveY - y < 0){
+        if (input.up.isPressed()){ 
             ya--;
         }
+        if (input.down.isPressed()){ 
+            ya++;
+        }
+        if (input.left.isPressed()){ 
+            xa--;
+        }
+        if (input.right.isPressed()){ 
+            xa++;
+        }
+        // int modifier = 8 * scale/2;
+        // if(input.moveX - (x + modifier) > 0){
+        //     xa++;
+        // }
+        // if(input.moveX - (x + modifier) < 0){
+        //     xa--;
+        // }
+        // if(input.moveY - y > 0){
+        //     ya++;
+        // }
+        // if(input.moveY - y < 0){
+        //     ya--;
+        // }
         
 
         if(xa != 0 || ya != 0){
