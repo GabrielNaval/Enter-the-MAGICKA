@@ -113,18 +113,18 @@ public class Level {
 		
 		if (xOffset < 0)
 			xOffset = 0;
-		if (xOffset > ((width << 3) - screen.width))
-			xOffset = ((width << 3) - screen.width);
+		if (xOffset > ((width << 2) - screen.width))
+			xOffset = ((width << 2) - screen.width);
 		if (yOffset < 0)
 			yOffset = 0;
-		if (yOffset > ((height << 3) - screen.height))
-			yOffset = ((height << 3) - screen.height);
+		if (yOffset > ((height << 2) - screen.height))
+			yOffset = ((height << 2) - screen.height);
 
 		screen.setOffset(xOffset, yOffset);
 
-		for (int y = (yOffset >> 3); y < (yOffset + screen.height >> 3) + 1; y++) {
-			for (int x = (xOffset >> 3); x < (xOffset + screen.width >> 3) + 1; x++) {
-				getTile(x, y).render(screen, this, x << 3, y << 3);
+		for (int y = (yOffset >> 2); y < (yOffset + screen.height >> 2) + 1; y++) {
+			for (int x = (xOffset >> 2); x < (xOffset + screen.width >> 2) + 1; x++) {
+				getTile(x, y).render(screen, this, x << 2, y << 2);
 			}
 		}
 	}

@@ -31,7 +31,6 @@ public class Screen {
     public void render(int xPos, int yPos, int tile, int color, int mirrorDir, int scale){
         xPos -= xOffset;
         yPos -= yOffset;
-
         
         boolean mirrorX = (mirrorDir & BIT_MIRROR_X) > 0 ;
         boolean mirrorY = (mirrorDir & BIT_MIRROR_Y) > 0 ;
