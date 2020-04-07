@@ -110,7 +110,7 @@ public class Level {
 	}
 
 	public void renderTiles(Screen screen, int xOffset, int yOffset) {
-		
+		int scale = 2; // change << 2 to scale down
 		if (xOffset < 0)
 			xOffset = 0;
 		if (xOffset > ((width << 2) - screen.width))

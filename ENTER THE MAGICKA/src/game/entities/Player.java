@@ -59,6 +59,8 @@ public class Player extends Mob {
         else{
             isMoving = false;
         }
+
+        //change >> 2 to scale down
         if (level.getTile(this.x >> 2, this.y >>2).getId() == 3){
             isSwimming = true;
         }

@@ -59,6 +59,7 @@ public abstract class Mob extends Entity {
             return false;
         }
 
+        //change >> 2 to scale
         Tile lastTile = level.getTile((this.x + x) >> 2, (this.y + y) >> 2);
         Tile newTile = level.getTile((this.x + x + xa) >> 2, (this.y + y + ya) >> 2);
         if(!lastTile.equals(newTile) && newTile.isSolid()){
