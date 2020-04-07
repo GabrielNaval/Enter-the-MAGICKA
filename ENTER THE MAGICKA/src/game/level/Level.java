@@ -20,6 +20,7 @@ public class Level {
 	public List<Entity> entities = new ArrayList<Entity>();
 	private String imagePath;
 	private BufferedImage image;
+	
 
 	public Level(String imagePath) {
 		if(imagePath != null){
@@ -109,6 +110,7 @@ public class Level {
 	}
 
 	public void renderTiles(Screen screen, int xOffset, int yOffset) {
+		
 		if (xOffset < 0)
 			xOffset = 0;
 		if (xOffset > ((width << 3) - screen.width))

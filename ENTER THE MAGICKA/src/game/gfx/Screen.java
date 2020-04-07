@@ -72,7 +72,7 @@ public class Screen {
     }
 
     public void setOffset(int xOffset, int yOffset) {
-        this.xOffset = 0;
-        this.yOffset = 0;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
     }
 }

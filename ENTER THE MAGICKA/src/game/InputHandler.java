@@ -40,6 +40,35 @@ public class InputHandler implements KeyListener, MouseInputListener {
         }
     }
 
+    public class MouseButton {
+        private boolean pressed = false;
+        private int x, y;
+        
+        public void toggle(boolean isPressed){
+            pressed = isPressed;
+        }
+
+        public boolean isPressed(){
+            return pressed;
+        }
+
+        public void setX(int x){
+            this.x = x;
+        }
+
+        public void setY(int y){
+            this.y = y;
+        }
+
+        public int getX(){
+            return x;
+        }
+
+        public int getY(){
+            return y;
+        }
+    }
+
     public List<Key> keys = new ArrayList<Key>();
 
     public Key up = new Key();
@@ -47,11 +76,8 @@ public class InputHandler implements KeyListener, MouseInputListener {
     public Key left = new Key();
     public Key right = new Key();
 
-    public int rightClickX;
-    public int rightClickY;
-
-    public int leftClickX;
-    public int leftClickY;
+    public MouseButton rightMouseButton = new MouseButton();
+    public MouseButton leftMouseButton = new MouseButton();
 
     public int xOffset, yOffset;
     
@@ -99,15 +125,17 @@ public class InputHandler implements KeyListener, MouseInputListener {
     public void mousePressed(MouseEvent e) {
         
         if(SwingUtilities.isRightMouseButton(e)){
-            rightClickX = e.getX()/scale;
-            rightClickY = e.getY()/scale;
-            System.out.printf("Right: mouseX: %5d, mouseY: %5d\n", rightClickX, rightClickY);
+            rightMouseButton.setX(e.getX()/scale);
+            rightMouseButton.setY(e.getY()/scale);
+            rightMouseButton.toggle(true);
+            // System.out.printf("Right: mouseX: %5d, mouseY: %5d\n", rightMouseButton.x,  rightMouseButton.y);
         }
 
         else if(SwingUtilities.isLeftMouseButton(e)){
-            leftClickX = e.getX()/scale;
-            leftClickY = e.getY()/scale;
-            System.out.printf("Left: mouseX: %5d, mouseY: %5d\n", leftClickX, leftClickY);
+            leftMouseButton.setX(e.getX()/scale);
+            leftMouseButton.setY(e.getY()/scale);
+            leftMouseButton.toggle(true);
+            // System.out.printf("Left: mouseX: %5d, mouseY: %5d\n",  leftMouseButton.x, leftMouseButton.y);
         }
     }
 
@@ -115,7 +143,15 @@ public class InputHandler implements KeyListener, MouseInputListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
+        if(SwingUtilities.isRightMouseButton(e)){
+            rightMouseButton.toggle(false);
+            // System.out.printf("Right: mouseX: %5d, mouseY: %5d\n", rightMouseButton.x,  rightMouseButton.y);
+        }
+
+        else if(SwingUtilities.isLeftMouseButton(e)){
+            leftMouseButton.toggle(false);
+            // System.out.printf("Left: mouseX: %5d, mouseY: %5d\n",  leftMouseButton.x, leftMouseButton.y);
+        }
 
     }
 
