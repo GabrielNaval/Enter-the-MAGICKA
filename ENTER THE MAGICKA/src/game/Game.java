@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 160;
     public static final int HEIGHT = WIDTH / 12 * 9;
-    public static final int SCALE = 4;
+    public static final int SCALE = 6;
     public static final String NAME = "ENTER THE MAGICKA WOAH";
 
     private JFrame frame;
